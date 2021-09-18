@@ -7,7 +7,7 @@ const Footer = () => {
       <span className="name">
         Made by{" "}
         <a
-          href="https://github.com/abubakarAMB"
+          href="https://github.com/abubakarAMB/word-hunt"
           target="__blank"
           rel="noreferrer noopener"
         >
