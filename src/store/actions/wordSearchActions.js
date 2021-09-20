@@ -10,7 +10,6 @@ export const searchWord = (category, word) => (dispatch) => {
   axios
     .get(`https://api.dictionaryapi.dev/api/v2/entries/${category}/${word}`)
     .then((res) => {
-      console.log(res.data);
       dispatch({
         type: SET_WORD_SEARCH_RESULT,
         payload: res.data,
@@ -23,4 +22,10 @@ export const searchWord = (category, word) => (dispatch) => {
         payload: err_data,
       });
     });
+};
+export const clearDictionary = () => (dispatch) => {
+  dispatch({
+    type: SET_WORD_SEARCH_RESULT,
+    payload: [],
+  });
 };

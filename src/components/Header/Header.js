@@ -4,11 +4,14 @@ import "./Header.css";
 import countries from "../../data/category";
 import { debounce } from "lodash";
 import { connect } from "react-redux";
-import { searchWord } from "../../store/actions/wordSearchActions";
+import {
+  searchWord,
+  clearDictionary,
+} from "../../store/actions/wordSearchActions";
 import { createTheme } from "@material-ui/core/styles";
 import Select from "@material-ui/core/Select";
 
-const Header = ({ LightTheme, searchWord }) => {
+const Header = ({ LightTheme, searchWord, clearDictionary }) => {
   const darkTheme = createTheme({
     palette: {
       primary: {
@@ -22,6 +25,10 @@ const Header = ({ LightTheme, searchWord }) => {
   useEffect(() => {
     word !== "" && searchWord(category, word);
   }, [word, category, searchWord]);
+
+  useEffect(() => {
+    word.length === 0 && clearDictionary();
+  }, [clearDictionary, word]);
 
   const handleChangeLanguage = (event) => {
     setWord("");
@@ -74,6 +81,7 @@ const mapStateToProps = (state) => ({
 
 const mapActionsToProps = {
   searchWord,
+  clearDictionary,
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(Header);
